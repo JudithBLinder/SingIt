@@ -5,11 +5,13 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import './videos.scss';
 import { startTimeArr, setTimeOutTime } from '../wheelsOnTheBus/WheelsOnTheBus'
 
+
+
+
 const Videos = () => {
   const [count, setCount] = useState(0);
-  const [played, setPlayed] = useState(30);
   const [playing, setPlay] = useState(true);
-  const [player, setPlayer] = useState();
+  const [massege, setMassege] = useState('');
 
   const commands = [
     {
@@ -17,6 +19,8 @@ const Videos = () => {
       callback: () => {
         setPlay(true);
         setCount(count + 1);
+        setMassege('AWESOME');
+        setTimeout(() => setMassege(''), 2 * 1000);
       }
     },
     {
@@ -24,6 +28,15 @@ const Videos = () => {
       callback: () => {
         setPlay(true);
         setCount(count + 1);
+        setMassege('AWESOME');
+        setTimeout(() => setMassege(''), 2 * 1000);
+      }
+    },
+    {
+      command: '',
+      callback: () => {
+        setMassege('Try again');
+        setTimeout(() => SpeechRecognition.startListening({ continuous: false }), 500)
       }
     }
   ]
@@ -41,16 +54,16 @@ const Videos = () => {
     <div className="conatainer-xl">
       <div className='player-wrapper'>
         <ReactPlayer
-          ref={player => setPlayer(player)}
           url={`https://www.youtube.com/watch?v=e_04ZrNroTo?start=${startTimeArr[count]}`}
           width="560"
-          height="315"
+          height="560"
           playing={playing}
           controls={true}
           onPlay={handlePlay}
         />
       </div>
       <p>{transcript}</p>
+      <p> {massege ? massege : ''} </p>
     </div>
   );
 }

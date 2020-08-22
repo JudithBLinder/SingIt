@@ -1,35 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import './banner.scss';
 
-export default class Banner extends Component {
-  state = {
-    slogan: '',
-    title: '',
-    imgSrc: '',
-    imgAlt: '',
-    align: 'left',
-  };
+const Banner = ({ slogan, title, imgSrc, imgAlt }) => {
 
-  componentDidMount() {
-    const { slogan, title, imgSrc, imgAlt, align } = this.props;
+  const [align] = useState('left');
 
-    this.setState({ slogan, title, imgSrc, imgAlt, align });
-  }
+  return (
+    <div className={`row banner banner-${align} border-bottom`}>
+      {imgSrc && (
+        <img alt={imgAlt} src={imgSrc} className="img-fluid col-md-6" />
+      )}
+    </div>
+  );
+};
 
-  render() {
-    const { slogan, title, imgSrc, imgAlt, align } = this.state;
-
-    return (
-      <div className={`row banner banner-${align} border-bottom`}>
-        <div className="banner-text col-md-6 d-flex flex-column align-items-center">
-          <div className="banner-text-slogan">{slogan}</div>
-          <h1>{title}</h1>
-        </div>
-        {imgSrc && (
-          <img alt={imgAlt} src={imgSrc} className="img-fluid col-md-6" />
-        )}
-      </div>
-    );
-  }
-}
+export default Banner;

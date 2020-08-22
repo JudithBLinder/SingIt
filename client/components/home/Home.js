@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Banner from '../banner/Banner';
 
-export default class Home extends Component {
-  render() {
-    return (
-      <>
-        <Banner
-          slogan=""
-          title="SingIT"
-          imgSrc=""
-          imgAlt=""
-          align=""
-        />
-      </>
-    );
-  }
-}
+const Home = () => {
+  return (
+    <>
+      <Banner
+        slogan=""
+        title=""
+        imgSrc="https://static.vecteezy.com/system/resources/previews/000/031/144/non_2x/modern-music-notes-vector-pack.jpg"
+        imgAlt=""
+        align=""
+      />
+    </>
+  );
+};
+
+export default Home;

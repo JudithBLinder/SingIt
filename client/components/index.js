@@ -2,12 +2,14 @@ import Banner from './banner/Banner';
 import Header from './header/Header';
 import Home from './home/Home';
 import Logo from './logo/Logo';
-import Videos from './videos/Videos';
+import Maroon5 from './maroon5/Maroon';
+import WheelsOnTheBus from './wheelsOnTheBus/WheelsOnTheBus'
 
 export {
   Banner,
   Header,
   Home,
   Logo,
-  Videos,
+  Maroon5,
+  WheelsOnTheBus,
 };

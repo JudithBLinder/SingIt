@@ -6,19 +6,19 @@ import '../public/styles.scss';
 import {
   Header,
   Home,
-  Videos,
+  Maroon5,
+  WheelsOnTheBus,
 } from './components';
 
 const App = () => {
   return (
     <HashRouter>
       <Header />
-      <div className="py-5">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/videos" component={Videos} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/maroon5" component={Maroon5} />
+        <Route exact path="/wheelsonthebus" component={WheelsOnTheBus} />
+      </Switch>
     </HashRouter>
   );
 }

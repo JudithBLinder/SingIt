@@ -2,45 +2,59 @@ import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-import './wheelsonthebus.scss';
+import './maroon5.scss';
 
-const startTimeArr = [9, 29, 41, 55];
+const startTimeArr = [16, 29, 41, 55];
 const setTimeOutTime = [
-  (41 - startTimeArr[0]) * 1000,
+  (27.3 - startTimeArr[0]) * 1000,
   (39 - startTimeArr[1]) * 1000,
   (53.9 - startTimeArr[2]) * 1000,
   (200 - startTimeArr[3]) * 1000,
 ];
 
-const WheelsOnTheBus = () => {
+const rainbow = (str) => {
+  return (
+    <ul class="c-rainbow">
+      <li class="c-rainbow__layer c-rainbow__layer--white">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--orange">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--red">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--violet">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--blue">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--green">{str}</li>
+      <li class="c-rainbow__layer c-rainbow__layer--yellow">{str}</li>
+    </ul>
+  )
+}
+
+const Maroon5 = () => {
   const [count, setCount] = useState(0);
   const [playing, setPlay] = useState(true);
   const [massege, setMassege] = useState('');
 
   const commands = [
     {
-      command: 'round and round',
+      command: 'between us',
       callback: () => {
         setCount(count + 1);
-        setMassege('GREAT JOB');
+        setMassege(rainbow('GOOD JOB'));
         setTimeout(() => setMassege(''), 2 * 1000);
         setPlay(true);
       }
     },
     {
-      command: 'town',
+      command: 'girls like you',
       callback: () => {
         setCount(count + 1);
-        setMassege('AWESOME');
+        setMassege(rainbow('AWESOME'));
         setTimeout(() => setMassege(''), 2 * 1000);
         setPlay(true);
       }
     },
     {
-      command: 'open and shut',
+      command: 'yeah yeah',
       callback: () => {
         setCount(count + 1);
-        setMassege('YOUR ON FIRE!!!');
+        setMassege(rainbow('YOUR ON FIRE!!!'));
         setTimeout(() => setMassege(''), 2 * 1000);
         setPlay(true);
       }
@@ -49,7 +63,7 @@ const WheelsOnTheBus = () => {
       command: '',
       callback: () => {
         setMassege('Try again');
-        setTimeout(() => SpeechRecognition.startListening(), 500)
+        setTimeout(() => SpeechRecognition.startListening({ continuous: false }), 500)
       }
     }
   ]
@@ -59,14 +73,14 @@ const WheelsOnTheBus = () => {
   function handlePlay() {
     const id = setTimeout(() => {
       setPlay(false)
-      SpeechRecognition.startListening();
+      SpeechRecognition.startListening({ continuous: false });
     }, setTimeOutTime[count])
   }
 
   return (
     <div className="container container-xl flex-column p-2">
       <ReactPlayer
-        url={`https://www.youtube.com/watch?v=e_04ZrNroTo?start=${startTimeArr[count]}`}
+        url={`https://www.youtube.com/watch?v=aJOTlE1K90k?start=${startTimeArr[count]}`}
         width="560"
         height="560"
         playing={playing}
@@ -74,9 +88,9 @@ const WheelsOnTheBus = () => {
         onPlay={handlePlay}
       />
       <p>You Said: {transcript}</p>
-      <h1 className="displayMassege text-center"> {massege ? massege : ''} </h1>
-    </div>
+      {massege ? massege : ''}
+    </div >
   );
 }
 
-export default WheelsOnTheBus;
+export default Maroon5;
